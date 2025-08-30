@@ -16,7 +16,7 @@ const Navbar = () => {
         <nav className='flex flex-col p-4 lg:p-7 lg:px-20 lg:flex-row justify-between lg:items-center shadow-2xl'>
 
           {/* LOGO */}
-          <div className='flex items-center gap-32 lg:gap-0'>
+          <div className='flex items-center gap-32 md:gap-[570px] lg:gap-0'>
             <h1 className='text-4xl font-bold text-green-900'>farmChain</h1>
 
               {/* HAMBURGER */}
