@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 
 const FarmChainLanding = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [stats, setStats] = useState({ farmers: 0, trades: 0, communities: 0 });
 
