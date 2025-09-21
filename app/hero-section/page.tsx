@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   ArrowRight, Play, Users, TrendingUp, Shield, Zap, Globe,
   CheckCircle, Star, MessageCircle, ShoppingCart, Cloud,
@@ -9,6 +9,47 @@ import {
 const HeroPage = () => {
 
       const [stats, setStats] = useState({ farmers: 0, trades: 0, communities: 0 });
+
+      useEffect(() => {
+          const animateStats = () => {
+            const targetStats = { farmers: 25000, trades: 150000, communities: 500 };
+            const duration = 2000;
+            const steps = 60;
+            const increment = duration / steps;
+      
+            let current = { farmers: 0, trades: 0, communities: 0 };
+            
+            const timer = setInterval(() => {
+              current.farmers = Math.min(current.farmers + targetStats.farmers / steps, targetStats.farmers);
+              current.trades = Math.min(current.trades + targetStats.trades / steps, targetStats.trades);
+              current.communities = Math.min(current.communities + targetStats.communities / steps, targetStats.communities);
+              
+              setStats({
+                farmers: Math.floor(current.farmers),
+                trades: Math.floor(current.trades),
+                communities: Math.floor(current.communities)
+              });
+      
+              if (current.farmers >= targetStats.farmers) {
+                clearInterval(timer);
+              }
+            }, increment);
+          };
+      
+          const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+              animateStats();
+              observer.disconnect();
+            }
+          });
+      
+          const statsElement = document.getElementById('stats-section');
+          if (statsElement) observer.observe(statsElement);
+      
+          return () => observer.disconnect();
+        }, []);
+      
+
   return (
     <div>
         {/* Hero Section */}
@@ -21,7 +62,8 @@ const HeroPage = () => {
         {/* Floating Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(15)].map((_, i) => (
-            <div
+            <div 
+              suppressHydrationWarning
               key={i}
               className="absolute animate-float opacity-60"
               style={{
@@ -103,7 +145,7 @@ const HeroPage = () => {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <p className="text-lg font-semibold">Welcome back, Sarah! 👋</p>
+                    <p className="text-lg font-semibold">Welcome to Farm Chain! 👋</p>
                     <p className="text-green-100">Your farm is thriving</p>
                   </div>
                 </div>

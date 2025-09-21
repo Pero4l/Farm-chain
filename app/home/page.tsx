@@ -236,14 +236,14 @@ const FarmChainLanding = () => {
       </header> */}
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 relative overflow-hidden">
+      {/* <section className="pt-24 pb-16 relative overflow-hidden"> */}
         {/* Background Elements */}
-        <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-blue-50 to-emerald-50"></div>
+        {/* <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-blue-50 to-emerald-50"></div>
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-200/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div> */}
         
         {/* Floating Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(15)].map((_, i) => (
             <div
               key={i}
@@ -310,9 +310,9 @@ const FarmChainLanding = () => {
             </div>
 
             <div className="relative">
-              <div className="relative z-10 bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+              <div className="relative z-10 bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden"> */}
                 {/* Mock App Interface */}
-                <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-6 text-white">
+                {/* <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-6 text-white">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-3">
                       <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
@@ -332,9 +332,9 @@ const FarmChainLanding = () => {
                   </div>
                 </div>
 
-                <div className="p-6 space-y-4">
+                <div className="p-6 space-y-4"> */}
                   {/* Mock Post */}
-                  <div className="border border-gray-200 rounded-2xl p-4 hover:shadow-md transition-shadow">
+                  {/* <div className="border border-gray-200 rounded-2xl p-4 hover:shadow-md transition-shadow">
                     <div className="flex items-center space-x-3 mb-3">
                       <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
                         MR
@@ -359,10 +359,10 @@ const FarmChainLanding = () => {
                         <span>3</span>
                       </button>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* Mock Weather Widget */}
-                  <div className="bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl p-4 text-white">
+                  {/* <div className="bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl p-4 text-white">
                     <div className="flex justify-between items-center">
                       <div>
                         <p className="text-lg font-bold">74°F</p>
@@ -370,10 +370,10 @@ const FarmChainLanding = () => {
                       </div>
                       <div className="text-3xl">⛅</div>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* Mock Marketplace Item */}
-                  <div className="border border-gray-200 rounded-2xl p-4 hover:shadow-md transition-shadow">
+                  {/* <div className="border border-gray-200 rounded-2xl p-4 hover:shadow-md transition-shadow">
                     <div className="flex justify-between items-start mb-2">
                       <div>
                         <p className="font-semibold text-gray-900">Organic Wheat - 2000 lbs</p>
@@ -384,10 +384,10 @@ const FarmChainLanding = () => {
                     <p className="text-sm text-gray-600">Green Valley Farm • Nebraska</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               {/* Floating Stats */}
-              <div className="absolute -top-8 -right-8 bg-white rounded-2xl shadow-xl p-4 border border-gray-100">
+              {/* <div className="absolute -top-8 -right-8 bg-white rounded-2xl shadow-xl p-4 border border-gray-100">
                 <div className="text-center">
                   <p className="text-2xl font-black text-green-600">98%</p>
                   <p className="text-xs text-gray-600">Success Rate</p>
@@ -403,10 +403,10 @@ const FarmChainLanding = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Stats Section */}
-      <section id="stats-section" className="py-16 bg-gradient-to-r from-green-600 via-emerald-600 to-blue-600">
+      {/* <section id="stats-section" className="py-16 bg-gradient-to-r from-green-600 via-emerald-600 to-blue-600">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-white">
             <div className="space-y-2">
@@ -426,7 +426,7 @@ const FarmChainLanding = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Features Section */}
       <section id="features" className="py-20 bg-gray-50">
