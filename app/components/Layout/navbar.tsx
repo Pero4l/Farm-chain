@@ -5,6 +5,7 @@ import bgImage from "@/public/1.jpeg"
 import { useState } from 'react'
 import { CiMenuBurger } from "react-icons/ci";
 import { AiOutlineClose } from "react-icons/ai";
+import ThemeToggle from '../toggle'
 
 const Navbar = () => {
 
@@ -16,8 +17,10 @@ const Navbar = () => {
         <nav className='flex flex-col p-4 lg:p-7 lg:px-20 lg:flex-row justify-between lg:items-center shadow-2xl'>
 
           {/* LOGO */}
-          <div className='flex items-center gap-32 md:gap-[570px] lg:gap-0'>
+          <div className='flex items-center justify-between md:gap-[570px] lg:gap-0'>
             <h1 className='text-4xl font-bold text-green-900'>farmChain</h1>
+
+           
 
               {/* HAMBURGER */}
 
@@ -40,10 +43,12 @@ const Navbar = () => {
           <li className='cursor-pointer hover:text-green-400'>Contact</li>
         </ul>
 
+        <ThemeToggle/>
+
         {/* BUTTONS */}
         <div className={menu ? 'flex justify-center' : 'hidden lg:flex'}>
-          <button className='bg-green-600 text-white lg:px-12 px-15 py-3 rounded-l-full hover:bg-green-700 transition'>Sign Up</button>
-          <button className='border border-green-600 text-green-600 lg:px-12 px-12 py-3 rounded-full hover:bg-green-600 hover:text-white transition bg-white relative right-5'>Sign In</button>
+          <button className='bg-green-600 text-white lg:px-12 md:px-40 px-15 py-3 rounded-l-full hover:bg-green-700 transition'>Sign Up</button>
+          <button className='border border-green-600 text-green-600 lg:px-12 md:px-44 px-12 py-3 rounded-full hover:bg-green-600 hover:text-white transition bg-white relative right-7'>Sign In</button>
         </div>
 
         </nav>
