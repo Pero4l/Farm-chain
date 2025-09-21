@@ -429,7 +429,7 @@ const FarmChainLanding = () => {
       </section> */}
 
       {/* Features Section */}
-      <section id="features" className="py-20 bg-gray-50">
+      {/* <section id="features" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6">
@@ -457,7 +457,7 @@ const FarmChainLanding = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Testimonials Section */}
       <section id="testimonials" className="py-20 bg-white">
