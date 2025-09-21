@@ -55,10 +55,7 @@ const Navbar = () => {
                         <a href="#marketplace" className="text-gray-700 hover:text-green-600 font-medium">Marketplace</a>
                         <a href="#pricing" className="text-gray-700 hover:text-green-600 font-medium">Pricing</a>
                         <a href="#testimonials" className="text-gray-700 hover:text-green-600 font-medium">Stories</a>
-                        <button className="text-left text-gray-700 hover:text-green-600 font-medium">Login</button>
-                        <button className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-2 rounded-xl font-semibold w-fit">
-                          Get Started
-                        </button>
+                        <Button/>
                       </div>
                     </div>
                   )}
