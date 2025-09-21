@@ -1,129 +1,100 @@
 import React from "react";
+import { 
+  Users, Globe, MessageCircle
+} from 'lucide-react';
 
 const Footer = () => {
   return (
     <div>
-      <footer className="bg-gray-50 dark:bg-green-900 border-t border-gray-200 dark:border-gray-800">
-        <div className="mx-auto max-w-7xl px-6 py-12">
-          {/* Top Section */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 pb-10 border-b border-gray-200 dark:border-gray-800">
-            {/* Logo and Description */}
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-md bg-gray-900 dark:bg-white flex items-center justify-center">
-                <span className="text-white dark:text-gray-900 font-bold">
-                  FC
-                </span>
+        {/* Footer */}
+            <footer className="bg-gray-900 text-white py-16">
+              <div className="max-w-7xl mx-auto px-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                  {/* Brand Column */}
+                  <div className="lg:col-span-2 space-y-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <span className="text-white font-bold text-xl">🌾</span>
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-black">Farm Chain</h3>
+                        <p className="text-gray-400 text-sm">Connecting Agriculture</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-400 leading-relaxed max-w-md">
+                      Empowering farmers worldwide through technology, community, and sustainable practices. 
+                      Growing together for a better tomorrow.
+                    </p>
+                    <div className="flex space-x-4">
+                      <button className="w-10 h-10 bg-gray-800 hover:bg-green-600 rounded-full flex items-center justify-center transition-colors">
+                        <Globe className="w-5 h-5" />
+                      </button>
+                      <button className="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors">
+                        <MessageCircle className="w-5 h-5" />
+                      </button>
+                      <button className="w-10 h-10 bg-gray-800 hover:bg-purple-600 rounded-full flex items-center justify-center transition-colors">
+                        <Users className="w-5 h-5" />
+                      </button>
+                    </div>
+                  </div>
+      
+                  {/* Quick Links */}
+                  <div>
+                    <h4 className="font-bold text-lg mb-4">Platform</h4>
+                    <div className="space-y-3">
+                      <a href="#" className="block text-gray-400 hover:text-green-400 transition-colors">Community</a>
+                      <a href="#" className="block text-gray-400 hover:text-green-400 transition-colors">Marketplace</a>
+                      <a href="#" className="block text-gray-400 hover:text-green-400 transition-colors">Weather Hub</a>
+                      <a href="#" className="block text-gray-400 hover:text-green-400 transition-colors">Analytics</a>
+                      <a href="#" className="block text-gray-400 hover:text-green-400 transition-colors">Mobile App</a>
+                    </div>
+                  </div>
+      
+                  {/* Resources */}
+                  <div>
+                    <h4 className="font-bold text-lg mb-4">Resources</h4>
+                    <div className="space-y-3">
+                      <a href="#" className="block text-gray-400 hover:text-green-400 transition-colors">Help Center</a>
+                      <a href="#" className="block text-gray-400 hover:text-green-400 transition-colors">API Docs</a>
+                      <a href="#" className="block text-gray-400 hover:text-green-400 transition-colors">Farming Guides</a>
+                      <a href="#" className="block text-gray-400 hover:text-green-400 transition-colors">Webinars</a>
+                      <a href="#" className="block text-gray-400 hover:text-green-400 transition-colors">Blog</a>
+                    </div>
+                  </div>
+      
+                  {/* Company */}
+                  <div>
+                    <h4 className="font-bold text-lg mb-4">Company</h4>
+                    <div className="space-y-3">
+                      <a href="#" className="block text-gray-400 hover:text-green-400 transition-colors">About Us</a>
+                      <a href="#" className="block text-gray-400 hover:text-green-400 transition-colors">Careers</a>
+                      <a href="#" className="block text-gray-400 hover:text-green-400 transition-colors">Press</a>
+                      <a href="#" className="block text-gray-400 hover:text-green-400 transition-colors">Contact</a>
+                      <a href="#" className="block text-gray-400 hover:text-green-400 transition-colors">Privacy</a>
+                    </div>
+                  </div>
+                </div>
+      
+                <div className="border-t border-gray-800 mt-12 pt-8">
+                  <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <p className="text-gray-400">
+                      © 2025 Farm Chain. All rights reserved. Cultivating connections worldwide.
+                    </p>
+                    <div className="flex items-center space-x-6">
+                      <a href="#" className="text-gray-400 hover:text-green-400 transition-colors text-sm">Terms</a>
+                      <a href="#" className="text-gray-400 hover:text-green-400 transition-colors text-sm">Privacy</a>
+                      <a href="#" className="text-gray-400 hover:text-green-400 transition-colors text-sm">Cookies</a>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="text-green-400 text-sm font-medium">All systems operational</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  FarmChain
-                </h3>
-                <p className="text-sm text-gray-200 dark:text-gray-200">
-                  Connecting farmers, buyers & tools.
-                </p>
-              </div>
-            </div>
-
-            {/* Newsletter Form */}
-            <form
-              className="w-full md:w-auto"
-              // onSubmit={(e) => {
-              //   e.preventDefault();
-              //   alert("Subscribed!");
-              // }}
-            >
-              <label htmlFor="newsletter" className="sr-only">
-                Subscribe to our newsletter
-              </label>
-              <div className="flex gap-2">
-                <input
-                  id="newsletter"
-                  type="email"
-                  required
-                  placeholder="your@email.com"
-                  className="w-full md:w-72 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-200 px-3 py-2 text-sm text-gray-900  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
-                />
-                <button
-                  type="submit"
-                  className="rounded-md bg-white px-4 py-2 text-sm font-medium text-green-600 hover:bg-green-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                >
-                  Subscribe
-                </button>
-              </div>
-              <p className="mt-2 text-xs text-gray-500 dark:text-gray-200">
-                No spam. Unsubscribe anytime.
-              </p>
-            </form>
-          </div>
-
-          {/* Links Section */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 py-10">
-            <div>
-              <h4 className="text-sm font-semibold text-gray-900 dark:text-white">
-                Product
-              </h4>
-              <ul className="mt-4 space-y-2">
-                <li className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
-                  Features
-                </li>
-                <li className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
-                  Pricing
-                </li>
-
-                <li className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
-                  Roadmap
-                </li>
-                <li className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
-                  Changelog
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-sm font-semibold text-gray-900 dark:text-white">
-                Resources
-              </h4>
-
-              <ul className="mt-4 space-y-2">
-                <li className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
-                  Blog
-                </li>
-                <li className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
-                  Guides
-                </li>
-
-                <li className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
-                  Support
-                </li>
-
-                <li className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
-                  API Docs
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Bottom Section */}
-          <div className="flex flex-col md:flex-row items-center justify-between border-t border-gray-200 dark:border-gray-800 pt-6 mt-6">
-            <p className="text-sm text-gray-600 dark:text-gray-200">
-              © {new Date().getFullYear()} FarmChain. All rights reserved.
-            </p>
-            <div className="flex gap-4 mt-4 md:mt-0">
-              <a href="#" className="text-gray-200 hover:text-indigo-500">
-                Twitter
-              </a>
-              <a href="#" className="text-gray-200 hover:text-indigo-500">
-                GitHub
-              </a>
-              <a href="#" className="text-gray-200 hover:text-indigo-500">
-                LinkedIn
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+            </footer>
     </div>
-  );
-};
+  )
+}
 
 export default Footer;

@@ -1,58 +1,69 @@
 'use client'
-import React from 'react'
-import Image from 'next/image'
-import bgImage from "@/public/1.jpeg" 
-import { useState } from 'react'
-import { CiMenuBurger } from "react-icons/ci";
-import { AiOutlineClose } from "react-icons/ai";
-import ThemeToggle from '../toggle'
+import React, { useState, useEffect } from 'react';
+import Button from '../Atoms/button';
+import { 
+  Menu, X
+} from 'lucide-react'; 
+
+
 
 const Navbar = () => {
 
-   const[menu, setMenu] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div>
 
-        <nav className='flex flex-col p-4 lg:p-7 lg:px-20 lg:flex-row justify-between lg:items-center shadow-2xl'>
-
-          {/* LOGO */}
-          <div className='flex items-center justify-between md:gap-[570px] lg:gap-0'>
-            <h1 className='text-4xl font-bold text-green-900'>farmChain</h1>
-
-           
-
-              {/* HAMBURGER */}
-
-          <div onClick={()=>setMenu(!menu)} className='lg:hidden text-black font-bold cursor-pointer text-3xl'>
-             {menu ? <AiOutlineClose/> : <CiMenuBurger/>}
-          </div>
-          </div>
-
+        {/* Header */}
+              <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-lg z-50 border-b border-gray-100 shadow-sm">
+                <div className="max-w-7xl mx-auto px-6 py-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <span className="text-white font-bold text-lg">🌾</span>
+                      </div>
+                      <div>
+                        <h1 className="text-2xl font-black bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                          Farm Chain
+                        </h1>
+                        <p className="text-xs text-gray-500 font-medium">Connecting Agriculture</p>
+                      </div>
+                    </div>
         
-
-          
-          {/* NAVIGATION */}
-        <ul className={menu ? 'flex flex-col lg:flex-row lg:gap-10 gap-5 font-bold lg:bg-white lg:shadow-2xl text-black rounded-full lg:p-4 py-5 lg:px-7' : 'hidden lg:flex lg:flex-row lg:gap-10 gap-5 font-bold lg:bg-white lg:shadow-2xl text-black rounded-full lg:p-4 py-5 lg:px-7'}>
-          <li className='cursor-pointer hover:text-black text-green-400'>Home</li>
-          <li className='cursor-pointer hover:text-green-400'>About</li>
-          <li className='cursor-pointer hover:text-green-400'>Feed</li>
-          <li className='cursor-pointer hover:text-green-400'>Community</li>
-          <li className='cursor-pointer hover:text-green-400'>Market Place</li>
-          <li className='cursor-pointer hover:text-green-400'>Services</li>
-          <li className='cursor-pointer hover:text-green-400'>Contact</li>
-        </ul>
-
-        <ThemeToggle/>
-
-        {/* BUTTONS */}
-        <div className={menu ? 'flex justify-center' : 'hidden lg:flex'}>
-          <button className='bg-green-600 text-white lg:px-12 md:px-40 px-15 py-3 rounded-l-full hover:bg-green-700 transition'>Sign Up</button>
-          <button className='border border-green-600 text-green-600 lg:px-12 md:px-44 px-12 py-3 rounded-full hover:bg-green-600 hover:text-white transition bg-white relative right-7'>Sign In</button>
-        </div>
-
-        </nav>
-      
+                    <nav className="hidden md:flex items-center space-x-8">
+                      <a href="#features" className="text-gray-700 hover:text-green-600 font-medium transition-colors">Features</a>
+                      <a href="#marketplace" className="text-gray-700 hover:text-green-600 font-medium transition-colors">Marketplace</a>
+                      <a href="#pricing" className="text-gray-700 hover:text-green-600 font-medium transition-colors">Pricing</a>
+                      <a href="#testimonials" className="text-gray-700 hover:text-green-600 font-medium transition-colors">Stories</a>
+                      
+                      <Button/>
+                    </nav>
+        
+                    <button
+                      onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      className="md:hidden p-2 text-gray-700 hover:text-green-600"
+                    >
+                      {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                    </button>
+                  </div>
+        
+                  {/* Mobile Menu */}
+                  {isMenuOpen && (
+                    <div className="md:hidden mt-4 pb-4 border-t border-gray-100">
+                      <div className="flex flex-col space-y-4 pt-4">
+                        <a href="#features" className="text-gray-700 hover:text-green-600 font-medium">Features</a>
+                        <a href="#marketplace" className="text-gray-700 hover:text-green-600 font-medium">Marketplace</a>
+                        <a href="#pricing" className="text-gray-700 hover:text-green-600 font-medium">Pricing</a>
+                        <a href="#testimonials" className="text-gray-700 hover:text-green-600 font-medium">Stories</a>
+                        <button className="text-left text-gray-700 hover:text-green-600 font-medium">Login</button>
+                        <button className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-2 rounded-xl font-semibold w-fit">
+                          Get Started
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </nav>
     </div>
   )
 }
