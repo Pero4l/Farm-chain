@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   CheckCircle, Star
 } from 'lucide-react';
@@ -42,6 +42,14 @@ const testimonials = [
       farmSize: "2,500 acres"
     }
   ];
+
+  useEffect(() => {
+      const interval = setInterval(() => {
+        setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+      }, 5000);
+      return () => clearInterval(interval);
+    }, []);
+  
 
 
   return (

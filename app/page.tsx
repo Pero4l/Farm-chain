@@ -5,6 +5,7 @@ import FarmChain from "./components/farmchain2";
 import HeroPage from "./hero-section/page";
 import FeaturePage from "./feature-section/page";
 import TestimonialPage from "./testimonials-section/page";
+import PricingPage from "./pricing-section/page";
 
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <HeroPage/>
       <FeaturePage/>
       <TestimonialPage/>
+      <PricingPage/>
 
       {/* <HomePage/> */}
 
