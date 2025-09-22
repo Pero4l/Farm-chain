@@ -63,7 +63,7 @@ const testimonials = [
                   </div>
         
                   <div className="relative">
-                    <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-3xl shadow-2xl border border-gray-100 p-2 lg:p-12 max-w-4xl mx-auto">
+                    <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-3xl shadow-2xl border border-gray-100 p-2 py-10 lg:p-12 max-w-4xl mx-auto">
                       <div className="flex items-start space-x-6">
                         <div className="relative flex-shrink-0">
                           <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg">
@@ -84,7 +84,7 @@ const testimonials = [
                               {testimonials[currentTestimonial].farmSize}
                             </span>
                           </div>
-                          <blockquote className="text-xl text-gray-800 leading-relaxed mb-6 italic">
+                          <blockquote className="text-xl text-gray-800 w-48 leading-relaxed mb-6 italic">
                             "{testimonials[currentTestimonial].content}"
                           </blockquote>
                           <div>
