@@ -1,9 +1,8 @@
+'use client'
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { 
-  ArrowRight, Play, Users, TrendingUp, Shield, Zap, Globe,
-  CheckCircle, Star, MessageCircle, ShoppingCart, Cloud,
-  Menu, X, ChevronDown, Award, Heart, Share, Eye
+  ArrowRight, Play, Zap, Star, MessageCircle, Heart, Share,
 } from 'lucide-react';
 
 const HeroPage = () => {

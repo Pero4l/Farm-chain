@@ -1,8 +1,8 @@
+'use client'
 import React from 'react'
 import { 
-  ArrowRight, Play, Users, TrendingUp, Shield, Zap, Globe,
-  CheckCircle, Star, MessageCircle, ShoppingCart, Cloud,
-  Menu, X, ChevronDown, Award, Heart, Share, Eye
+   Users, TrendingUp, Shield, Zap,
+  ShoppingCart, Cloud,
 } from 'lucide-react';
 
 

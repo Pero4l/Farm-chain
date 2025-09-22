@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect } from 'react';
 import { 
   ArrowRight, Play, Users, TrendingUp, Shield, Zap, Globe,
@@ -460,7 +461,7 @@ const FarmChainLanding = () => {
       </section> */}
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 bg-white">
+      {/* <section id="testimonials" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6">
@@ -507,10 +508,10 @@ const FarmChainLanding = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Testimonial Indicators */}
-            <div className="flex justify-center space-x-3 mt-8">
+            {/* <div className="flex justify-center space-x-3 mt-8">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
@@ -525,7 +526,7 @@ const FarmChainLanding = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Pricing Section */}
       <section id="pricing" className="py-20 bg-gray-50">
