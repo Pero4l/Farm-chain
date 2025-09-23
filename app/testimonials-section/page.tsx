@@ -92,7 +92,7 @@ const testimonials = [
                               {testimonials[currentTestimonial].farmSize}
                             </span>
                           </div>
-                          <blockquote className="text-xl text-gray-800 w-48 leading-relaxed mb-6 italic">
+                          <blockquote className="text-xl text-gray-800 w-48 lg:w-auto leading-relaxed mb-6 italic">
                             "{testimonials[currentTestimonial].content}"
                           </blockquote>
                           <div>
