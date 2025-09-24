@@ -1,24 +1,259 @@
-// import React, { useState, useEffect } from 'react';
-// import { 
-//   Home, Users, MessageCircle, Store, Cloud, Bell, Search, Plus, 
-//   Heart, MessageSquare, Share, TrendingUp, MapPin, Thermometer,
-//   Droplets, Wind, Sun, User, Settings, LogOut, Filter, Star,
-//   Calendar, DollarSign, Truck, Leaf, Award, BarChart3, Camera,
-//   Video, Mic, Send, Phone, Mail, Globe, Zap, Target, ShoppingCart,
-//   CheckCircle, AlertCircle, Clock, Eye, Bookmark, ChevronRight,
-//   Activity, PieChart, LineChart, FileText, Download
+// import React, { useState } from 'react';
+// import {
+//   Home,
+//   Users,
+//   MessageCircle,
+//   Store,
+//   Cloud,
+//   Bell,
+//   Search,
+//   Plus,
+//   Heart,
+//   MessageSquare,
+//   Share,
+//   TrendingUp,
+//   MapPin,
+//   Droplets,
+//   Wind,
+//   Sun,
+//   User,
+//   Filter,
+//   Star,
+//   Calendar,
+//   DollarSign,
+//   Video,
+//   Eye,
+//   Zap,
+//   ShoppingCart,
+//   CheckCircle,
+//   AlertCircle,
+//   BarChart3,
+//   Camera,
+//   PieChart
 // } from 'lucide-react';
 
+// /* ================= TYPES ================= */
+// type Post = {
+//   id: number;
+//   farmer: string;
+//   location: string;
+//   avatar: string;
+//   time: string;
+//   verified: boolean;
+//   farmSize: string;
+//   content: string;
+//   images?: string[];
+//   video?: boolean;
+//   likes: number;
+//   comments: number;
+//   shares: number;
+//   type: string;
+//   price?: string;
+//   tags?: string[];
+//   category: string;
+// };
 
+// type Message = {
+//   id: number;
+//   sender: string;
+//   avatar: string;
+//   lastMessage: string;
+//   time: string;
+//   unread: boolean;
+//   online: boolean;
+// };
 
-// const FarmChain = () => {
-//   const [activeTab, setActiveTab] = useState('dashboard');
-//   const [selectedFilter, setSelectedFilter] = useState('all');
-//   const [notifications, setNotifications] = useState(3);
-//   const [isLoading, setIsLoading] = useState(false);
+// type MarketplaceItem = {
+//   id: number;
+//   title: string;
+//   quantity?: string;
+//   price: string;
+//   pricePerUnit?: string;
+//   seller: string;
+//   location: string;
+//   rating: number;
+//   image: string;
+//   certified?: string;
+//   harvestDate?: string;
+//   category: string;
+//   condition?: string;
+//   shipping?: string;
+//   specifications?: string;
+//   availability?: string;
+//   verified?: boolean;
+//   insurance?: string;
+// };
 
-//   // Enhanced data with more realistic farming content
-//   const [posts, setPosts] = useState([
+// type WeatherDay = {
+//   day: string;
+//   high: string;
+//   low: string;
+//   condition: string;
+//   precipitation: string;
+//   icon: React.ReactNode;
+// };
+
+// type WeatherData = {
+//   location: string;
+//   current: {
+//     temp: string;
+//     condition: string;
+//     humidity: string;
+//     wind: string;
+//     pressure: string;
+//     uvIndex: number;
+//     visibility: string;
+//     icon: React.ReactNode;
+//   };
+//   forecast: WeatherDay[];
+//   alerts: { type: string; message: string; severity: string }[];
+// };
+
+// type Insight = { title: string; value: string; status: string; icon: React.ReactNode };
+
+// type AnalyticsData = {
+//   farmPerformance: { metric: string; value: string; change: string; trend: 'up' | 'down' }[];
+//   cropData: { crop: string; planted: string; expected: string; revenue: string }[];
+// };
+
+// /* ================ SMALL COMPONENTS ================ */
+// const TabButton: React.FC<{
+//   id: string;
+//   icon: React.ComponentType<any>;
+//   label: string;
+//   isActive: boolean;
+//   onClick: (id: string) => void;
+//   badge?: number;
+// }> = ({ id, icon: Icon, label, isActive, onClick, badge }) => (
+//   <button
+//     onClick={() => onClick(id)}
+//     className={`relative flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 w-full ${
+//       isActive
+//         ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg transform scale-105'
+//         : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:scale-105'
+//     }`}
+//   >
+//     <Icon className="w-5 h-5" />
+//     <span className="font-medium">{label}</span>
+//     {badge && (
+//       <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+//         {badge}
+//       </span>
+//     )}
+//   </button>
+// );
+
+// const PostCard: React.FC<{ post: Post }> = ({ post }) => (
+//   <div className="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+//     <div className="p-6 pb-4">
+//       <div className="flex items-center justify-between mb-4">
+//         <div className="flex items-center space-x-4">
+//           <div className="relative">
+//             <div className="w-14 h-14 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md">
+//               {post.avatar}
+//             </div>
+//             {post.verified && (
+//               <CheckCircle className="absolute -bottom-1 -right-1 w-5 h-5 text-blue-500 bg-white rounded-full" />
+//             )}
+//           </div>
+//           <div className="flex-1">
+//             <div className="flex items-center space-x-2 mb-1">
+//               <h3 className="font-bold text-gray-900 text-lg">{post.farmer}</h3>
+//               <span
+//                 className={`px-3 py-1 text-xs font-semibold rounded-full ${
+//                   post.category === 'commercial' ? 'bg-blue-100 text-blue-700' :
+//                   post.category === 'cooperative' ? 'bg-purple-100 text-purple-700' :
+//                   'bg-green-100 text-green-700'
+//                 }`}
+//               >
+//                 {post.category === 'commercial' ? 'Commercial' : post.category === 'cooperative' ? 'Cooperative' : 'Small Scale'}
+//               </span>
+//             </div>
+//             <div className="flex items-center text-sm text-gray-500 space-x-3">
+//               <span className="flex items-center">
+//                 <MapPin className="w-4 h-4 mr-1" />
+//                 {post.location}
+//               </span>
+//               <span>•</span>
+//               <span>{post.farmSize}</span>
+//               <span>•</span>
+//               <span>{post.time}</span>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+//       <div className="mb-4">
+//         <p className="text-gray-800 leading-relaxed text-lg mb-3">{post.content}</p>
+//         {post.price && (
+//           <div className="inline-flex items-center bg-green-100 text-green-700 px-3 py-1 rounded-full font-semibold">
+//             <DollarSign className="w-4 h-4 mr-1" />
+//             {post.price}
+//           </div>
+//         )}
+//       </div>
+
+//       {post.tags && (
+//         <div className="flex flex-wrap gap-2 mb-4">
+//           {post.tags.map((tag, idx) => (
+//             <span key={idx} className="text-sm bg-gray-100 text-gray-600 px-3 py-1 rounded-full hover:bg-gray-200 cursor-pointer transition-colors">
+//               {tag}
+//             </span>
+//           ))}
+//         </div>
+//       )}
+
+//       {post.images && (
+//         <div className="grid grid-cols-2 gap-3 mb-4 rounded-2xl overflow-hidden">
+//           {post.images.map((img, i) => (
+//             <div key={i} className={`h-48 ${img} flex items-center justify-center text-white text-4xl cursor-pointer hover:scale-105 transition-transform`}>
+//               🌱
+//             </div>
+//           ))}
+//         </div>
+//       )}
+
+//       {post.video && (
+//         <div className="bg-gradient-to-br from-blue-500 to-purple-600 h-64 rounded-2xl flex items-center justify-center text-white mb-4 cursor-pointer hover:scale-105 transition-transform">
+//           <div className="text-center">
+//             <Video className="w-16 h-16 mx-auto mb-2" />
+//             <p className="text-lg font-semibold">Watch Full Video</p>
+//           </div>
+//         </div>
+//       )}
+//     </div>
+
+//     <div className="px-6 py-4 bg-gray-50 border-t border-gray-100">
+//       <div className="flex items-center justify-between">
+//         <div className="flex items-center space-x-6">
+//           <button className="flex items-center space-x-2 text-gray-600 hover:text-red-500 transition-all duration-200 hover:scale-110">
+//             <Heart className="w-5 h-5" />
+//             <span className="font-semibold">{post.likes}</span>
+//           </button>
+//           <button className="flex items-center space-x-2 text-gray-600 hover:text-blue-500 transition-all duration-200 hover:scale-110">
+//             <MessageSquare className="w-5 h-5" />
+//             <span className="font-semibold">{post.comments}</span>
+//           </button>
+//           <button className="flex items-center space-x-2 text-gray-600 hover:text-green-500 transition-all duration-200 hover:scale-110">
+//             <Share className="w-5 h-5" />
+//             <span className="font-semibold">{post.shares}</span>
+//           </button>
+//         </div>
+//         <div className="flex items-center space-x-2 text-sm text-gray-500">
+//           <Eye className="w-4 h-4" />
+//           <span>{post.likes + post.comments * 3} views</span>
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+// );
+
+// /* ================= MAIN COMPONENT ================= */
+// const FarmChain: React.FC = () => {
+//   const [activeTab, setActiveTab] = useState<string>('dashboard');
+//   const [notifications, setNotifications] = useState<number>(3);
+
+//   const [posts] = useState<Post[]>([
 //     {
 //       id: 1,
 //       farmer: "Sarah Johnson",
@@ -72,37 +307,13 @@
 //     }
 //   ]);
 
-//   const [messages, setMessages] = useState([
-//     {
-//       id: 1,
-//       sender: "Sarah Johnson",
-//       avatar: "SJ",
-//       lastMessage: "Thanks for the planting schedule! This will help a lot.",
-//       time: "5 min ago",
-//       unread: true,
-//       online: true
-//     },
-//     {
-//       id: 2,
-//       sender: "AgriTech Solutions",
-//       avatar: "AS",
-//       lastMessage: "We'd like to discuss a partnership opportunity.",
-//       time: "1 hour ago",
-//       unread: true,
-//       online: false
-//     },
-//     {
-//       id: 3,
-//       sender: "Miguel Rodriguez",
-//       avatar: "MR",
-//       lastMessage: "Perfect! When can we arrange the corn trade?",
-//       time: "3 hours ago",
-//       unread: false,
-//       online: true
-//     }
+//   const [messages] = useState<Message[]>([
+//     { id: 1, sender: "Sarah Johnson", avatar: "SJ", lastMessage: "Thanks for the planting schedule! This will help a lot.", time: "5 min ago", unread: true, online: true },
+//     { id: 2, sender: "AgriTech Solutions", avatar: "AS", lastMessage: "We'd like to discuss a partnership opportunity.", time: "1 hour ago", unread: true, online: false },
+//     { id: 3, sender: "Miguel Rodriguez", avatar: "MR", lastMessage: "Perfect! When can we arrange the corn trade?", time: "3 hours ago", unread: false, online: true }
 //   ]);
 
-//   const marketplaceItems = [
+//   const marketplaceItems: MarketplaceItem[] = [
 //     {
 //       id: 1,
 //       title: "Premium Organic Wheat",
@@ -137,7 +348,7 @@
 //     }
 //   ];
 
-//   const weatherData = {
+//   const weatherData: WeatherData = {
 //     location: "Your Location",
 //     current: {
 //       temp: "74°F",
@@ -160,14 +371,14 @@
 //     ]
 //   };
 
-//   const farmingInsights = [
+//   const farmingInsights: Insight[] = [
 //     { title: "Soil Moisture", value: "72%", status: "optimal", icon: <Droplets className="w-5 h-5" /> },
 //     { title: "Growing Days", value: "145", status: "good", icon: <Calendar className="w-5 h-5" /> },
 //     { title: "Market Price", value: "+12%", status: "up", icon: <TrendingUp className="w-5 h-5" /> },
-//     { title: "Yield Prediction", value: "94%", status: "excellent", icon: <Target className="w-5 h-5" /> }
+//     { title: "Yield Prediction", value: "94%", status: "excellent", icon: <Zap className="w-5 h-5" /> }
 //   ];
 
-//   const analyticsData = {
+//   const analyticsData: AnalyticsData = {
 //     farmPerformance: [
 //       { metric: "Total Revenue", value: "$145,200", change: "+15.3%", trend: "up" },
 //       { metric: "Crop Yield", value: "89%", change: "+8.2%", trend: "up" },
@@ -181,132 +392,9 @@
 //     ]
 //   };
 
-//   const TabButton = ({ id, icon: Icon, label, isActive, onClick, badge }) => (
-//     <button
-//       onClick={() => onClick(id)}
-//       className={`relative flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 w-full ${
-//         isActive 
-//           ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg transform scale-105' 
-//           : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:scale-102'
-//       }`}
-//     >
-//       <Icon className="w-5 h-5" />
-//       <span className="font-medium">{label}</span>
-//       {badge && (
-//         <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-//           {badge}
-//         </span>
-//       )}
-//     </button>
-//   );
-
-//   const PostCard = ({ post }) => (
-//     <div className="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-//       <div className="p-6 pb-4">
-//         <div className="flex items-center justify-between mb-4">
-//           <div className="flex items-center space-x-4">
-//             <div className="relative">
-//               <div className="w-14 h-14 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md">
-//                 {post.avatar}
-//               </div>
-//               {post.verified && (
-//                 <CheckCircle className="absolute -bottom-1 -right-1 w-5 h-5 text-blue-500 bg-white rounded-full" />
-//               )}
-//             </div>
-//             <div className="flex-1">
-//               <div className="flex items-center space-x-2 mb-1">
-//                 <h3 className="font-bold text-gray-900 text-lg">{post.farmer}</h3>
-//                 <span className={`px-3 py-1 text-xs font-semibold rounded-full ${
-//                   post.category === 'commercial' ? 'bg-blue-100 text-blue-700' :
-//                   post.category === 'cooperative' ? 'bg-purple-100 text-purple-700' :
-//                   'bg-green-100 text-green-700'
-//                 }`}>
-//                   {post.category === 'commercial' ? 'Commercial' : 
-//                    post.category === 'cooperative' ? 'Cooperative' : 'Small Scale'}
-//                 </span>
-//               </div>
-//               <div className="flex items-center text-sm text-gray-500 space-x-3">
-//                 <span className="flex items-center">
-//                   <MapPin className="w-4 h-4 mr-1" />
-//                   {post.location}
-//                 </span>
-//                 <span>•</span>
-//                 <span>{post.farmSize}</span>
-//                 <span>•</span>
-//                 <span>{post.time}</span>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-
-//         <div className="mb-4">
-//           <p className="text-gray-800 leading-relaxed text-lg mb-3">{post.content}</p>
-//           {post.price && (
-//             <div className="inline-flex items-center bg-green-100 text-green-700 px-3 py-1 rounded-full font-semibold">
-//               <DollarSign className="w-4 h-4 mr-1" />
-//               {post.price}
-//             </div>
-//           )}
-//         </div>
-
-//         {post.tags && (
-//           <div className="flex flex-wrap gap-2 mb-4">
-//             {post.tags.map((tag, index) => (
-//               <span key={index} className="text-sm bg-gray-100 text-gray-600 px-3 py-1 rounded-full hover:bg-gray-200 cursor-pointer transition-colors">
-//                 {tag}
-//               </span>
-//             ))}
-//           </div>
-//         )}
-
-//         {post.images && (
-//           <div className="grid grid-cols-2 gap-3 mb-4 rounded-2xl overflow-hidden">
-//             {post.images.map((image, index) => (
-//               <div key={index} className={`h-48 ${image} flex items-center justify-center text-white text-4xl cursor-pointer hover:scale-105 transition-transform`}>
-//                 🌱
-//               </div>
-//             ))}
-//           </div>
-//         )}
-        
-//         {post.video && (
-//           <div className="bg-gradient-to-br from-blue-500 to-purple-600 h-64 rounded-2xl flex items-center justify-center text-white mb-4 cursor-pointer hover:scale-105 transition-transform">
-//             <div className="text-center">
-//               <Video className="w-16 h-16 mx-auto mb-2" />
-//               <p className="text-lg font-semibold">Watch Full Video</p>
-//             </div>
-//           </div>
-//         )}
-//       </div>
-
-//       <div className="px-6 py-4 bg-gray-50 border-t border-gray-100">
-//         <div className="flex items-center justify-between">
-//           <div className="flex items-center space-x-6">
-//             <button className="flex items-center space-x-2 text-gray-600 hover:text-red-500 transition-all duration-200 hover:scale-110">
-//               <Heart className="w-5 h-5" />
-//               <span className="font-semibold">{post.likes}</span>
-//             </button>
-//             <button className="flex items-center space-x-2 text-gray-600 hover:text-blue-500 transition-all duration-200 hover:scale-110">
-//               <MessageSquare className="w-5 h-5" />
-//               <span className="font-semibold">{post.comments}</span>
-//             </button>
-//             <button className="flex items-center space-x-2 text-gray-600 hover:text-green-500 transition-all duration-200 hover:scale-110">
-//               <Share className="w-5 h-5" />
-//               <span className="font-semibold">{post.shares}</span>
-//             </button>
-//           </div>
-//           <div className="flex items-center space-x-2 text-sm text-gray-500">
-//             <Eye className="w-4 h-4" />
-//             <span>{post.likes + post.comments * 3} views</span>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-
 //   return (
 //     <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-emerald-50">
-//       {/* Header */}
+//       {/* HEADER */}
 //       <header className="bg-white/80 backdrop-blur-lg shadow-lg border-b border-gray-200 sticky top-0 z-50">
 //         <div className="max-w-7xl mx-auto px-6 py-4">
 //           <div className="flex items-center justify-between">
@@ -321,7 +409,7 @@
 //                 <p className="text-sm text-gray-600 font-medium">Revolutionizing Agriculture Together</p>
 //               </div>
 //             </div>
-            
+
 //             <div className="flex-1 max-w-2xl mx-8">
 //               <div className="relative">
 //                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -335,7 +423,7 @@
 //                 </button>
 //               </div>
 //             </div>
-            
+
 //             <div className="flex items-center space-x-4">
 //               <button className="relative p-3 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-xl transition-all duration-200">
 //                 <Bell className="w-6 h-6" />
@@ -357,6 +445,7 @@
 //         </div>
 //       </header>
 
+//       {/* BODY */}
 //       <div className="max-w-7xl mx-auto px-6 py-8">
 //         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
 //           {/* Sidebar */}
@@ -370,7 +459,7 @@
 //                 <TabButton id="messages" icon={MessageCircle} label="Messages" isActive={activeTab === 'messages'} onClick={setActiveTab} badge={5} />
 //                 <TabButton id="analytics" icon={TrendingUp} label="Farm Analytics" isActive={activeTab === 'analytics'} onClick={setActiveTab} />
 //               </nav>
-              
+
 //               <div className="space-y-4">
 //                 <button className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-4 rounded-2xl font-bold hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-3 hover:scale-105">
 //                   <Plus className="w-5 h-5" />
@@ -384,7 +473,7 @@
 //             </div>
 //           </div>
 
-//           {/* Main Content */}
+//           {/* Main */}
 //           <div className="lg:col-span-3">
 //             {activeTab === 'dashboard' && (
 //               <div className="space-y-8">
@@ -402,8 +491,8 @@
 //                 </div>
 
 //                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-//                   {farmingInsights.map((insight, index) => (
-//                     <div key={index} className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300 hover:scale-105">
+//                   {farmingInsights.map((insight, idx) => (
+//                     <div key={idx} className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300 hover:scale-105">
 //                       <div className="flex items-center justify-between mb-4">
 //                         <div className={`p-3 rounded-xl ${
 //                           insight.status === 'excellent' ? 'bg-green-100 text-green-600' :
@@ -527,22 +616,16 @@
 //                             <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold">
 //                               {message.avatar}
 //                             </div>
-//                             {message.online && (
-//                               <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
-//                             )}
+//                             {message.online && <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>}
 //                           </div>
 //                           <div className="flex-1">
 //                             <div className="flex items-center justify-between mb-1">
 //                               <h4 className="font-semibold text-gray-900">{message.sender}</h4>
 //                               <span className="text-sm text-gray-500">{message.time}</span>
 //                             </div>
-//                             <p className={`text-sm ${message.unread ? 'text-gray-900 font-medium' : 'text-gray-600'}`}>
-//                               {message.lastMessage}
-//                             </p>
+//                             <p className={`text-sm ${message.unread ? 'text-gray-900 font-medium' : 'text-gray-600'}`}>{message.lastMessage}</p>
 //                           </div>
-//                           {message.unread && (
-//                             <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-//                           )}
+//                           {message.unread && <div className="w-3 h-3 bg-green-500 rounded-full"></div>}
 //                         </div>
 //                       </div>
 //                     ))}
@@ -571,16 +654,10 @@
 //                     <div key={item.id} className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105">
 //                       <div className={`h-48 ${item.image} flex items-center justify-center text-white text-6xl relative`}>
 //                         <div className="absolute inset-0 bg-black/20"></div>
-//                         <span className="relative z-10">
-//                           {item.category === 'equipment' ? '🚜' : '🌾'}
-//                         </span>
-//                         {item.certified && (
-//                           <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-//                             {item.certified}
-//                           </div>
-//                         )}
+//                         <span className="relative z-10">{item.category === 'equipment' ? '🚜' : '🌾'}</span>
+//                         {item.certified && <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">{item.certified}</div>}
 //                       </div>
-                      
+
 //                       <div className="p-6">
 //                         <div className="flex items-start justify-between mb-4">
 //                           <div className="flex-1">
@@ -589,16 +666,14 @@
 //                               <span className="text-3xl font-black text-green-600">{item.price}</span>
 //                               <span className="text-gray-500 text-sm">({item.pricePerUnit})</span>
 //                             </div>
-//                             {item.quantity && (
-//                               <p className="text-gray-600 font-medium">Quantity: {item.quantity}</p>
-//                             )}
+//                             {item.quantity && (<p className="text-gray-600 font-medium">Quantity: {item.quantity}</p>)}
 //                           </div>
 //                           <div className="flex items-center space-x-1">
-//                             <Star className="w-4 h-4 text-yellow-500 fill-current" />
+//                             <Star className="w-4 h-4 text-yellow-500" />
 //                             <span className="text-sm font-semibold text-gray-700">{item.rating}</span>
 //                           </div>
 //                         </div>
-                        
+
 //                         <div className="space-y-3 mb-6">
 //                           <div className="flex items-center justify-between text-sm">
 //                             <span className="text-gray-500">Seller:</span>
@@ -612,7 +687,7 @@
 //                             </span>
 //                           </div>
 //                         </div>
-                        
+
 //                         <div className="grid grid-cols-2 gap-3">
 //                           <button className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-3 rounded-xl font-bold hover:shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2">
 //                             <MessageCircle className="w-4 h-4" />
@@ -654,19 +729,15 @@
 //                     3-Day Forecast
 //                   </h3>
 //                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-//                     {weatherData.forecast.map((day, index) => (
-//                       <div key={index} className="text-center p-6 bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-105">
+//                     {weatherData.forecast.map((day, i) => (
+//                       <div key={i} className="text-center p-6 bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-105">
 //                         <div className="font-bold text-lg text-gray-900 mb-3">{day.day}</div>
-//                         <div className="flex justify-center mb-4">
-//                           {day.icon}
-//                         </div>
+//                         <div className="flex justify-center mb-4">{day.icon}</div>
 //                         <div className="text-sm text-gray-600 mb-2">{day.condition}</div>
 //                         <div className="font-bold text-lg text-gray-900 mb-2">
 //                           <span className="text-xl">{day.high}</span> / <span className="text-gray-600">{day.low}</span>
 //                         </div>
-//                         <div className="text-xs text-blue-600 font-semibold">
-//                           {day.precipitation} rain
-//                         </div>
+//                         <div className="text-xs text-blue-600 font-semibold">{day.precipitation} rain</div>
 //                       </div>
 //                     ))}
 //                   </div>
@@ -674,20 +745,12 @@
 
 //                 {weatherData.alerts.length > 0 && (
 //                   <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
-//                     <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-//                       <AlertCircle className="w-7 h-7 mr-3 text-orange-500" />
-//                       Weather Alerts
-//                     </h3>
+//                     <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center"><AlertCircle className="w-7 h-7 mr-3 text-orange-500" />Weather Alerts</h3>
 //                     <div className="space-y-4">
-//                       {weatherData.alerts.map((alert, index) => (
-//                         <div key={index} className={`p-4 rounded-2xl border-l-4 ${
-//                           alert.severity === 'moderate' ? 'bg-orange-50 border-orange-500' :
-//                           'bg-blue-50 border-blue-500'
-//                         }`}>
+//                       {weatherData.alerts.map((alert, i) => (
+//                         <div key={i} className={`p-4 rounded-2xl border-l-4 ${alert.severity === 'moderate' ? 'bg-orange-50 border-orange-500' : 'bg-blue-50 border-blue-500'}`}>
 //                           <div className="flex items-center space-x-3">
-//                             <AlertCircle className={`w-5 h-5 ${
-//                               alert.severity === 'moderate' ? 'text-orange-500' : 'text-blue-500'
-//                             }`} />
+//                             <AlertCircle className={`w-5 h-5 ${alert.severity === 'moderate' ? 'text-orange-500' : 'text-blue-500'}`} />
 //                             <p className="font-semibold text-gray-900">{alert.message}</p>
 //                           </div>
 //                         </div>
@@ -714,15 +777,13 @@
 //                 </div>
 
 //                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-//                   {analyticsData.farmPerformance.map((metric, index) => (
-//                     <div key={index} className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300 hover:scale-105">
+//                   {analyticsData.farmPerformance.map((metric, i) => (
+//                     <div key={i} className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300 hover:scale-105">
 //                       <div className="flex items-center justify-between mb-4">
 //                         <div className="p-3 rounded-xl bg-purple-100 text-purple-600">
 //                           <BarChart3 className="w-5 h-5" />
 //                         </div>
-//                         <span className={`text-sm font-semibold ${
-//                           metric.trend === 'up' ? 'text-green-600' : 'text-red-600'
-//                         }`}>
+//                         <span className={`text-sm font-semibold ${metric.trend === 'up' ? 'text-green-600' : 'text-red-600'}`}>
 //                           {metric.change}
 //                         </span>
 //                       </div>
@@ -733,13 +794,10 @@
 //                 </div>
 
 //                 <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
-//                   <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-//                     <PieChart className="w-7 h-7 mr-3 text-purple-500" />
-//                     Crop Overview
-//                   </h3>
+//                   <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center"><PieChart className="w-7 h-7 mr-3 text-purple-500" />Crop Overview</h3>
 //                   <div className="space-y-6">
-//                     {analyticsData.cropData.map((crop, index) => (
-//                       <div key={index} className="border border-gray-200 rounded-2xl p-6 hover:shadow-md transition-all duration-300">
+//                     {analyticsData.cropData.map((crop, i) => (
+//                       <div key={i} className="border border-gray-200 rounded-2xl p-6 hover:shadow-md transition-all duration-300">
 //                         <div className="flex items-center justify-between mb-4">
 //                           <h4 className="text-xl font-bold text-gray-900">{crop.crop}</h4>
 //                           <span className="text-2xl font-black text-green-600">{crop.revenue}</span>
@@ -768,10 +826,7 @@
 //               <div className="bg-gradient-to-br from-blue-500 to-cyan-500 rounded-3xl shadow-xl text-white p-6 relative overflow-hidden">
 //                 <div className="absolute inset-0 bg-black/10"></div>
 //                 <div className="relative z-10">
-//                   <h3 className="font-bold text-lg mb-4 flex items-center">
-//                     <Cloud className="w-5 h-5 mr-2" />
-//                     Weather Now
-//                   </h3>
+//                   <h3 className="font-bold text-lg mb-4 flex items-center"><Cloud className="w-5 h-5 mr-2" />Weather Now</h3>
 //                   <div className="text-center">
 //                     <div className="text-3xl font-black mb-2">{weatherData.current.temp}</div>
 //                     <p className="text-blue-100 text-sm mb-4">{weatherData.current.condition}</p>
@@ -790,35 +845,30 @@
 //               </div>
 
 //               <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-6">
-//                 <h3 className="font-bold text-lg text-gray-900 mb-6 flex items-center">
-//                   <TrendingUp className="w-5 h-5 mr-2 text-green-500" />
-//                   Market Prices
-//                 </h3>
+//                 <h3 className="font-bold text-lg text-gray-900 mb-6 flex items-center"><TrendingUp className="w-5 h-5 mr-2 text-green-500" />Market Prices</h3>
 //                 <div className="space-y-4">
 //                   {[
 //                     { crop: 'Corn', price: '$6.45', change: '+2.3%', status: 'up' },
 //                     { crop: 'Soybeans', price: '$14.23', change: '-1.2%', status: 'down' },
 //                     { crop: 'Wheat', price: '$8.91', change: '+0.8%', status: 'up' }
-//                   ].map((item, index) => (
-//                     <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+//                   ].map((item, i) => (
+//                     <div key={i} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
 //                       <div>
 //                         <p className="font-semibold text-gray-900">{item.crop}</p>
 //                         <p className="text-gray-600 text-sm">per bushel</p>
 //                       </div>
 //                       <div className="text-right">
 //                         <p className="font-bold text-lg text-gray-900">{item.price}</p>
-//                         <span className={`text-sm font-semibold ${
-//                           item.status === 'up' ? 'text-green-600' : 'text-red-500'
-//                         }`}>
-//                           {item.change}
-//                         </span>
+//                         <span className={`text-sm font-semibold ${item.status === 'up' ? 'text-green-600' : 'text-red-500'}`}>{item.change}</span>
 //                       </div>
 //                     </div>
 //                   ))}
 //                 </div>
 //               </div>
+
 //             </div>
 //           </div>
+
 //         </div>
 //       </div>
 //     </div>
